@@ -8,6 +8,7 @@ namespace CampTask2
 
         public static void Fight(Warrior warrior1, Warrior warrior2)
         {
+            var round = 1;
             while (warrior1.IsAlive && warrior2.IsAlive)
             {
                 var atack1 = warrior1.Attack();
@@ -17,14 +18,16 @@ namespace CampTask2
                 warrior1.Defense(atack2);
                 if (warrior1.XP <= 0)
                 {
-                    Console.WriteLine($"Перемiг - {warrior2}");
+                    Console.WriteLine($"Перемiг у раундi {round} - {warrior2}");
                     break;
                 }
                 if (warrior2.XP <= 0)
                 {
-                    Console.WriteLine($"Перемiг - {warrior1}");
+                    Console.WriteLine($"Перемiг у раундi {round} - {warrior1}");
                     break;
                 }
+
+                round++;
             }
         }
     }
