@@ -9,8 +9,10 @@ namespace CampTask2
         public static void Fight(Warrior warrior1, Warrior warrior2)
         {
             var round = 1;
+           
             while (warrior1.IsAlive && warrior2.IsAlive)
             {
+                Console.WriteLine($"Раунд {round}");
                 var atack1 = warrior1.Attack();
                 warrior2.Defense(atack1);
 
@@ -26,7 +28,6 @@ namespace CampTask2
                     Console.WriteLine($"Перемiг у раундi {round} - {warrior1}");
                     break;
                 }
-
                 round++;
             }
         }
