@@ -1,4 +1,5 @@
 ﻿using CampTask2.AddSuperPower;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace CampTask2.Warriors
 {
@@ -9,6 +10,14 @@ namespace CampTask2.Warriors
         public int Power { get; set; } = 15;
         public bool IsAlive { get; set; } = true;
         public virtual void AddSuperPower(ISuperPower superPower, int power) { }
+
+
+        public static Warrior operator+(Warrior warrior1, Warrior warrior2)
+        {
+            warrior1.XP += warrior2.XP;
+            return warrior1;
+        }
+
         public int Attack()
         {
             if (this.Armor > 0)
