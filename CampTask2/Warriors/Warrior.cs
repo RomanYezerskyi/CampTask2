@@ -8,7 +8,7 @@ namespace CampTask2.Warriors
         public int XP { get; set; } = 100;
         public int Armor { get; set; } = 5;
         public int Power { get; set; } = 15;
-        public bool IsAlive { get; set; } = true;
+        public bool IsAlive => XP > 0;
         public virtual void AddSuperPower(ISuperPower superPower, int power) { }
 
 

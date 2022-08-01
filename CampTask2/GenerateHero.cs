@@ -9,12 +9,21 @@ using CampTask2.Warriors;
 
 namespace CampTask2
 {
-    internal static class GenerateHero
+    public static class GenerateHero
     {
-        public static List<Warrior> GeneBaseHeroes()
+        public static List<Warrior> GetBaseHeroes()
         {
-            Console.WriteLine("Enter number of heroes");
-            var num = Convert.ToInt32(Console.ReadLine());
+            var num = 0;
+            do
+            {
+                Console.WriteLine("Enter number of heroes");
+                int.TryParse(Console.ReadLine(), out num);
+                if ((num % 2) != 0)
+                {
+                    num = 0;
+                }
+            } while (num == 0);
+           
             var list = new List<Warrior>();
             for (int i = 0; i < num; i++)
             {
@@ -27,48 +36,68 @@ namespace CampTask2
         private static Warrior GenerateWarrior(int i)
         {
             Warrior user1 = null;
-
-            Console.WriteLine($"User - {i}\n 1 - Orc, 2 - Knight, 3 - Wizard 4 - Archer");
-            var enter = Convert.ToInt32(Console.ReadLine());
-            switch (enter)
+            while (user1 == null)
             {
-                case 1:
-                    user1 = new Orc();
-                    break;
-                case 2:
-                    user1 = new Knight();
-                    break;
-                case 3:
-                    user1 = new Wizard();
-                    break;
-                case 4:
-                    user1 = new Archer();
-                    break;
+                int enter = 0;
+                do
+                {
+                    Console.WriteLine($"User - {i}\n 1 - Orc, 2 - Knight, 3 - Wizard 4 - Archer");
+                    int.TryParse(Console.ReadLine(), out enter);
+                } while (enter == 0);
+                switch (enter)
+                {
+                    case 1:
+                        user1 = new Orc();
+                        break;
+                    case 2:
+                        user1 = new Knight();
+                        break;
+                    case 3:
+                        user1 = new Wizard();
+                        break;
+                    case 4:
+                        user1 = new Archer();
+                        break;
+                    default:
+                        Console.WriteLine("Only 1-4 !");
+                        break;
 
+                }
             }
             GenerateWarriorSuperPower(user1, i);
             return user1;
         }
         private static void GenerateWarriorSuperPower(Warrior user1, int i)
         {
-            ISuperPower hp = new AddHp();
-            ISuperPower power = new AddPower();
-            ISuperPower armor = new AddArmor();
+            ISuperPower superPower = null;
             var generator = new SuperPowerGenerator();
-            Console.WriteLine($"User - {i} superPower\n 1 - hp, 2 - power, 3 - armor");
-            var enter = Convert.ToInt32(Console.ReadLine());
-            switch (enter)
+            while (superPower == null)
             {
-                case 1:
-                    user1.AddSuperPower(hp, generator.GetSuperPower());
-                    break;
-                case 2:
-                    user1.AddSuperPower(power, generator.GetSuperPower());
-                    break;
-                case 3:
-                    user1.AddSuperPower(armor, generator.GetSuperPower());
-                    break;
+                int enter = 0;
+                do
+                {
+                    Console.WriteLine($"User - {i} superPower\n 1 - hp, 2 - power, 3 - armor");
+                    int.TryParse(Console.ReadLine(), out enter);
+                } while (enter == 0);
+                switch (enter)
+                {
+                    case 1:
+                        superPower = new AddHp();
+                        user1.AddSuperPower(superPower, generator.GetSuperPower());
+                        break;
+                    case 2:
+                        superPower = new AddPower();
+                        user1.AddSuperPower(superPower, generator.GetSuperPower());
+                        break;
+                    case 3:
+                        superPower = new AddArmor();
+                        user1.AddSuperPower(superPower, generator.GetSuperPower());
+                        break;
+                    default:
+                        Console.WriteLine("Only 1-3 !");
+                        break;
 
+                }
             }
         }
     }

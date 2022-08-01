@@ -12,7 +12,7 @@ namespace CampTask2
         {
             while (true)
             {
-                var heroes = GenerateHero.GeneBaseHeroes();
+                var heroes = GenerateHero.GetBaseHeroes();
                 var battleFighters = heroes.Chunk(2).Select(x => BattleScene.Fight(x.First(), x.Last()));
                 await Task.WhenAll(battleFighters);
                 Console.WriteLine("\n\nKeep playing");
