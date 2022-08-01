@@ -2,7 +2,7 @@
 
 namespace CampTask2.AddSuperPower
 {
-    internal class AddPower:ISuperPower
+    public class AddPower:ISuperPower
     {
         public void AddSuperPower(Warrior warrior, int power)
         {
