@@ -1,29 +1,22 @@
 ﻿using System;
+using System.Threading.Tasks;
 using CampTask2.AddSuperPower;
 using CampTask2.PowerGenerator;
 using CampTask2.Warriors;
-
+using System.Linq;
 namespace CampTask2
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             while (true)
             {
                 var heroes = GenerateHero.GeneBaseHeroes();
-
-                for (int i = 0; i <= heroes.Count / 2; i+=2)
-                {
-                    BattleScene.Fight(heroes[i], heroes[i + 1]);
-                }
-
+                var battleFighters = heroes.Chunk(2).Select(x => BattleScene.Fight(x.First(), x.Last()));
+                await Task.WhenAll(battleFighters);
                 Console.WriteLine("\n\nKeep playing");
-
-
             }
-
-            Console.ReadKey();
         }
     }
 }
