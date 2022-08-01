@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using CampTask2.Warriors;
 
 namespace CampTask2
@@ -6,7 +7,7 @@ namespace CampTask2
     public static class BattleScene
     {
 
-        public static void Fight(Warrior warrior1, Warrior warrior2)
+        public static async Task Fight(Warrior warrior1, Warrior warrior2)
         {
             var round = 1;
            
@@ -29,6 +30,7 @@ namespace CampTask2
                     break;
                 }
                 round++;
+                await Task.Delay(100);
             }
         }
     }
