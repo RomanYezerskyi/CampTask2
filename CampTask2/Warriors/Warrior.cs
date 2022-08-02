@@ -9,8 +9,7 @@ namespace CampTask2.Warriors
         public int Armor { get; set; } = 5;
         public int Power { get; set; } = 15;
         public bool IsAlive => XP > 0;
-        public virtual void AddSuperPower(ISuperPower superPower, int power) { }
-
+        public abstract void AddSuperPower(ISuperPower superPower, int power);
 
         public static Warrior operator+(Warrior warrior1, Warrior warrior2)
         {
